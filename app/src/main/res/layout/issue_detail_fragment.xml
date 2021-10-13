@@ -17,9 +17,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/issue_card"
-            android:elevation="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -69,12 +69,12 @@
 
                 <TextView
                     android:id="@+id/user_name_in_comment"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:gravity="center"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
                     android:text="@{model.issue.username}"
                     app:layout_constraintStart_toEndOf="@id/user_image_in_comments"
                     app:layout_constraintTop_toBottomOf="@id/issue_desc_in_comment"
@@ -82,8 +82,8 @@
 
                 <TextView
                     android:id="@+id/updated_time_in_comment"
-                    android:layout_width="0dp"
                     style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
@@ -100,17 +100,18 @@
 
         <TextView
             android:id="@+id/commentsTextView"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            anyComments="@{model.issue}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="@string/comments_text"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/issue_card"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/issue_card" />
 
         <FrameLayout
+            anyCommentsForRoot="@{model.issue}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"

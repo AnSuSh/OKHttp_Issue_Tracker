@@ -38,7 +38,8 @@ fun List<Issues>.asDatabaseModel(): List<IssueTable>{
             issueDescription = it.body?: "",
             username = it.user.login,
             avatarUrl = it.user.avatar_url,
-            updatedTime = it.updated_at
+            updatedTime = it.updated_at,
+            comments = it.comments
         )
     }
 }

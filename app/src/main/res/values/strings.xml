@@ -4,5 +4,6 @@
     <string name="user_profile_photo">User Profile photo</string>
     <string name="refresh_menu">Refresh</string>
     <string name="api_status">Api Status</string>
-    <string name="comments_text">Comments</string>
+    <string name="comments_text_show">Comments</string>
+    <string name="comments_text_hide">No Comments</string>
 </resources>

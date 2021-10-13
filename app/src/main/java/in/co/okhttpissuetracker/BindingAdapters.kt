@@ -7,7 +7,9 @@ import `in`.co.okhttpissuetracker.ui.detail.CommentAdapter
 import `in`.co.okhttpissuetracker.ui.main.IssueAdapter
 import android.net.Uri
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -82,5 +84,25 @@ fun imageStatus(imageView: ImageView, status: IssueApiStatus?) {
         IssueApiStatus.DONE -> {
             imageView.visibility = View.GONE
         }
+    }
+}
+
+@BindingAdapter("anyComments")
+fun showCommentsStatus(textView: TextView, issue: IssueAppModel?) {
+    if (issue!=null){
+        if (issue.comments > 0){
+            textView.text = textView.context.getString(R.string.comments_text_show)
+        }else
+            textView.text = textView.context.getString(R.string.comments_text_hide)
+    }
+}
+
+@BindingAdapter("anyCommentsForRoot")
+fun showCommentsStatusForRoot(frameLayout: FrameLayout, issue: IssueAppModel?) {
+    if (issue!=null){
+        if (issue.comments > 0){
+            frameLayout.visibility = View.VISIBLE
+        }else
+            frameLayout.visibility = View.GONE
     }
 }

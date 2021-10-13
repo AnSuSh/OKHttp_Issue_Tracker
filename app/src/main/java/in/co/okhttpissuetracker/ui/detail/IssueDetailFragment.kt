@@ -26,7 +26,6 @@ class IssueDetailFragment : Fragment() {
     ): View {
         issueBinding =
             DataBindingUtil.inflate(inflater, R.layout.issue_detail_fragment, container, false)
-        setHasOptionsMenu(true)
         return issueBinding.root
     }
 
@@ -56,6 +55,13 @@ class IssueDetailFragment : Fragment() {
             }
         })
 
+        viewModel.issue.observe(viewLifecycleOwner, {
+            if (it.comments > 0)
+                setHasOptionsMenu(true)
+            else
+                setHasOptionsMenu(false)
+        })
+
         val decor =
             DividerItemDecoration(issueBinding.commentsRecyclerView.context, RecyclerView.VERTICAL)
         issueBinding.apply {
@@ -63,7 +69,6 @@ class IssueDetailFragment : Fragment() {
             commentsRecyclerView.addItemDecoration(decor)
             lifecycleOwner = viewLifecycleOwner
             model = viewModel
-            executePendingBindings()
         }
     }
 

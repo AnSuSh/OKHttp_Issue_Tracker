@@ -20,7 +20,9 @@ data class IssueTable(
     @ColumnInfo(name = "user_avatar_url")
     val avatarUrl: String,
     @ColumnInfo(name = "update_time")
-    val updatedTime: String
+    val updatedTime: String,
+    @ColumnInfo(name = "comment_count")
+    val comments: Long
 )
 
 @Entity(tableName = "comments_table")
@@ -72,7 +74,8 @@ fun List<IssueTable>.asAppModel(): List<IssueAppModel> {
             issueDescription = it.issueDescription,
             username = it.username,
             avatarUrl = it.avatarUrl.toUri().buildUpon().scheme("https").build(),
-            updatedTime = it.updatedTime.formatToDate()
+            updatedTime = it.updatedTime.formatToDate(),
+            comments = it.comments
         )
     }
 }
@@ -84,7 +87,8 @@ fun IssueTable.asAppModel(): IssueAppModel {
         issueDescription = this.issueDescription,
         username = this.username,
         avatarUrl = this.avatarUrl.toUri().buildUpon().scheme("https").build(),
-        updatedTime = this.updatedTime.formatToDate()
+        updatedTime = this.updatedTime.formatToDate(),
+        comments = this.comments
     )
 }
 

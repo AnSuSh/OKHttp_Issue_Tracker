@@ -18,7 +18,7 @@ class IssueRepository(private val database: IssueDatabase, private val issueId: 
     val comments: List<CommentAppModel> =
         database.commentsDao.getComments(issueId)?.asAppModel() ?: ArrayList()
     val issue: IssueAppModel = database.issueDao.getIssue(issueId)?.asAppModel() ?: IssueAppModel(
-        0L, "", "", "", Uri.EMPTY, ""
+        0L, "", "", "", Uri.EMPTY, "", 0L
     )
     private val baseUrl = "https://api.github.com"
 
@@ -47,7 +47,6 @@ class IssueRepository(private val database: IssueDatabase, private val issueId: 
         }
         val comments = service.getCommentsFromServer()
         Timber.d("${comments?.size}")
-        // TODO: 13/10/21 Check if comments list is empty or not. If empty show user 'No comments'
         if (comments != null) {
             database.commentsDao.insertAllComments(comments.asDatabaseModel(issueId))
         }
@@ -61,7 +60,8 @@ data class IssueAppModel(
     val issueDescription: String,
     val username: String,
     val avatarUrl: Uri,
-    val updatedTime: String
+    val updatedTime: String,
+    val comments: Long
 )
 
 data class CommentAppModel(
