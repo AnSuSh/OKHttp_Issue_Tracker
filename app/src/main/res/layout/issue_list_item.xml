@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="issueClick"
+            type="in.co.okhttpissuetracker.ui.main.IssueClickListener" />
+
+        <variable
+            name="issue"
+            type="in.co.okhttpissuetracker.repository.IssueAppModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:layout_marginVertical="16dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/user_image_in_issues"
+                    imageUrl="@{issue.avatarUrl}"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/user_profile_photo"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@android:drawable/btn_plus" />
+
+                <TextView
+                    android:id="@+id/issue_title"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:maxLines="1"
+                    android:text="@{issue.issueTitle}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/user_image_in_issues"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Issue title" />
+
+                <TextView
+                    android:id="@+id/issue_desc"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="3"
+                    android:overScrollMode="never"
+                    android:text="@{issue.issueDescription}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/user_image_in_issues"
+                    app:layout_constraintTop_toBottomOf="@id/issue_title"
+                    tools:text="Issue Description" />
+
+                <TextView
+                    android:id="@+id/user_name_in_issue"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="@{issue.username}"
+                    app:layout_constraintStart_toEndOf="@id/user_image_in_issues"
+                    app:layout_constraintTop_toBottomOf="@id/issue_desc"
+                    tools:text="User name" />
+
+                <TextView
+                    android:id="@+id/updated_time_in_issue"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="end"
+                    android:text="@{issue.updatedTime}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/user_name_in_issue"
+                    app:layout_constraintTop_toBottomOf="@id/issue_desc"
+                    tools:text="Updated time" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/clickable_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="@{()-> issueClick.onClick(issue)}" />
+    </FrameLayout>
+</layout>

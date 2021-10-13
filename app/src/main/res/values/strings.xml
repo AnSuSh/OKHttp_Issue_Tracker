@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">OKHttp Issue Tracker</string>
+    <string name="home_fragment_list_header">Issues of OkHttp repository</string>
+    <string name="user_profile_photo">User Profile photo</string>
+    <string name="refresh_menu">Refresh</string>
+    <string name="api_status">Api Status</string>
+</resources>
