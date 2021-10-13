@@ -15,7 +15,7 @@ import timber.log.Timber
 import java.io.IOException
 
 @InternalCoroutinesApi
-class IssueDetailViewModel(application: Application, issueId: Long) :
+class IssueDetailViewModel(application: Application, val issueId: Long) :
     AndroidViewModel(application) {
 
     private lateinit var issueRepo: IssueRepository
@@ -56,7 +56,7 @@ class IssueDetailViewModel(application: Application, issueId: Long) :
     }
 
     private fun refreshDatabase() {
-        val repo = IssueRepository(IssueDatabase.getInstance(getApplication()))
+        val repo = IssueRepository(IssueDatabase.getInstance(getApplication()), issueId)
         _comments.postValue(repo.comments)
     }
 

@@ -8,6 +8,8 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.InternalCoroutinesApi
 import timber.log.Timber
 
@@ -54,8 +56,11 @@ class IssueDetailFragment : Fragment() {
             }
         })
 
+        val decor =
+            DividerItemDecoration(issueBinding.commentsRecyclerView.context, RecyclerView.VERTICAL)
         issueBinding.apply {
             commentsRecyclerView.adapter = adapter
+            commentsRecyclerView.addItemDecoration(decor)
             lifecycleOwner = viewLifecycleOwner
             model = viewModel
             executePendingBindings()

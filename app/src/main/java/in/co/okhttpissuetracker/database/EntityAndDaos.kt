@@ -45,7 +45,7 @@ interface IssuesDao {
     fun insertAllIssues(issues: List<IssueTable>)
 
     @Transaction
-    @Query("SELECT * FROM issues_table")
+    @Query("SELECT * FROM issues_table ORDER BY issue_id DESC")
     fun getAllIssues(): List<IssueTable>?
 
     @Query("SELECT * FROM issues_table WHERE issue_id=:issueId")

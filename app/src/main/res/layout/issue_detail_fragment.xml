@@ -16,90 +16,108 @@
         android:padding="8dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/issue_detail"
+            android:id="@+id/issue_card"
+            android:elevation="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:id="@+id/issue_list_item_comment"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="124dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/user_image_in_comments"
+                    imageUrl="@{model.issue.avatarUrl}"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/user_profile_photo"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@android:drawable/btn_plus" />
 
                 <TextView
-                    android:id="@+id/issue_title"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:id="@+id/issue_title_in_comment"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:text="@{model.issue.issueTitle}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/user_image_in_comments"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="Issue title" />
 
                 <TextView
-                    android:id="@+id/issue_desc"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:maxLines="3"
-                    android:overScrollMode="never"
+                    android:id="@+id/issue_desc_in_comment"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="10"
                     android:text="@{model.issue.issueDescription}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/user_image_in_comments"
+                    app:layout_constraintTop_toBottomOf="@id/issue_title_in_comment"
                     tools:text="Issue Description" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/user_name_in_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:text="@{model.issue.username}"
+                    app:layout_constraintStart_toEndOf="@id/user_image_in_comments"
+                    app:layout_constraintTop_toBottomOf="@id/issue_desc_in_comment"
+                    tools:text="User name" />
 
-                    <ImageView
-                        android:id="@+id/user_image_in_issues"
-                        imageUrl="@{model.issue.avatarUrl}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/user_profile_photo"
-                        android:scaleType="fitCenter"
-                        tools:src="@android:drawable/btn_plus" />
+                <TextView
+                    android:id="@+id/updated_time_in_comment"
+                    android:layout_width="0dp"
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="end"
+                    android:text="@{model.issue.updatedTime}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/user_name_in_comment"
+                    app:layout_constraintTop_toBottomOf="@id/issue_desc_in_comment"
+                    tools:text="Updated time" />
 
-                    <TextView
-                        android:id="@+id/user_name_in_issue"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="start"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@{model.issue.username}"
-                        tools:text="User name" />
-
-                    <TextView
-                        android:id="@+id/updated_time_in_issue"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@{model.issue.updatedTime}"
-                        tools:text="Updated time" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:id="@+id/commentsTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/comments_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/issue_card"/>
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/issue_detail">
+            app:layout_constraintTop_toBottomOf="@+id/commentsTextView">
 
             <ImageView
                 android:id="@+id/statusImageComment"
@@ -111,14 +129,13 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/comments_recyclerView"
+                listComments="@{model.comments}"
+                recyclerViewStatus="@{model.status}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:elevation="16dp"
                 android:padding="8dp"
-                recyclerViewStatus="@{model.status}"
-                listComments="@{model.comments}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <com.google.android.material.progressindicator.CircularProgressIndicator

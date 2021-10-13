@@ -17,8 +17,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="8dp"
-        android:layout_marginVertical="16dp">
+        android:layout_marginVertical="16dp"
+        android:elevation="8dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="16dp">
+                android:padding="8dp">
 
                 <ImageView
                     android:id="@+id/user_image_in_issues"
@@ -44,7 +44,7 @@
                     tools:src="@android:drawable/btn_plus" />
 
                 <TextView
-                    android:id="@+id/issue_title"
+                    android:id="@+id/issue_title_in_comment"
                     style="@style/TextAppearance.MaterialComponents.Headline6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                     tools:text="Issue title" />
 
                 <TextView
-                    android:id="@+id/issue_desc"
+                    android:id="@+id/issue_desc_in_comment"
                     style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                     android:text="@{issue.issueDescription}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/user_image_in_issues"
-                    app:layout_constraintTop_toBottomOf="@id/issue_title"
+                    app:layout_constraintTop_toBottomOf="@id/issue_title_in_comment"
                     tools:text="Issue Description" />
 
                 <TextView
@@ -81,7 +81,7 @@
                     android:gravity="center"
                     android:text="@{issue.username}"
                     app:layout_constraintStart_toEndOf="@id/user_image_in_issues"
-                    app:layout_constraintTop_toBottomOf="@id/issue_desc"
+                    app:layout_constraintTop_toBottomOf="@id/issue_desc_in_comment"
                     tools:text="User name" />
 
                 <TextView
@@ -95,7 +95,7 @@
                     android:text="@{issue.updatedTime}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/user_name_in_issue"
-                    app:layout_constraintTop_toBottomOf="@id/issue_desc"
+                    app:layout_constraintTop_toBottomOf="@id/issue_desc_in_comment"
                     tools:text="Updated time" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
