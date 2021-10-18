@@ -56,6 +56,7 @@ class IssueDetailViewModel(application: Application, val issueId: Long) :
     }
 
     private fun refreshDatabase() {
+        Timber.d("Database refreshing!!")
         val repo = IssueRepository(IssueDatabase.getInstance(getApplication()), issueId)
         _comments.postValue(repo.comments)
     }
